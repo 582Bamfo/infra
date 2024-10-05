@@ -4,4 +4,7 @@ resource "aws_instance" "infra" {
   metadata_options {
     http_tokens = "required"
   }
+  tags = {
+    Name = "Infra-server"
+  }
 }
