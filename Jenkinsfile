@@ -31,10 +31,22 @@ pipeline {
             sh 'terraform plan'
           }
         }
+        stage('SECURITY SCANNING') { 
+            agent {
+                docker {
+                    image 'tfsec/tfsec-ci:v0.57.1'
+                    reuseNode true
+                }
+          }
+          steps {
+              sh 'tfsec .'   // This command runs the tfsec security scanner
+          }
+}
+
         
-        stage('DELETE') {
+        stage('PROVISIONING') {
           steps{
-            sh 'terraform destroy -auto-approve'
+            sh 'terraform apply -auto-approve'
           }
         }
     }
