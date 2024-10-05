@@ -30,6 +30,7 @@ pipeline {
           steps{
             sh 'terraform plan'
           }
+        }
         stage("security scanning") {
           agent {
             docker {
@@ -42,7 +43,7 @@ pipeline {
            } 
           }
         }
-        }
+        
         stage(DEPLOYMENT) {
           steps{
             sh 'terraform destroy -auto-approve'
