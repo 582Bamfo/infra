@@ -42,11 +42,12 @@ pipeline {
             sh 'tfsec .'
            } 
           }
-        }
+        
         
         stage(DEPLOYMENT) {
           steps{
             sh 'terraform destroy -auto-approve'
           }
         }
+    }
     }
