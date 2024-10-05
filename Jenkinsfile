@@ -32,9 +32,9 @@ pipeline {
           }
         }
         
-        stage('DEPLOYMENT') {
+        stage('DELETE') {
           steps{
-            sh 'terraform apply -auto-approve'
+            sh 'terraform destroy -auto-approve'
           }
         }
     }
