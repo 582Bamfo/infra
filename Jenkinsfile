@@ -44,9 +44,9 @@ pipeline {
 }
 
         
-        stage('PROVISIONING') {
+        stage('DESTROY') {
           steps{
-            sh 'terraform apply -auto-approve'
+            sh 'terraform destroy -auto-approve'
           }
         }
     }
