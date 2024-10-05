@@ -33,18 +33,18 @@ pipeline {
         }
         stage("security scanning") {
           agent {
-            docker {
-              image 'tfsec/tfsec-ci:v0.57.1'
-              reuseNode true
+              docker {
+                image 'tfsec/tfsec-ci:v0.57.1'
+                reuseNode true
+              }
             }
-            }
-           steps {
-            sh 'tfsec .'
-           } 
+          steps {
+          sh 'tfsec .'
+          } 
           }
         
         
-        stage(DEPLOYMENT) {
+        stage('DEPLOYMENT') {
           steps{
             sh 'terraform destroy -auto-approve'
           }
